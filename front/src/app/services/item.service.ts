@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../environments/environment";
 import {ApiItemData, Item, ItemData} from "../models/item.model";
 import {map} from "rxjs/operators";
+import {ApiCategoryData, CategoryModel} from "../models/category.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,18 +29,14 @@ export class ItemService {
       })
     );
   }
-  getItem(id: string | null) {
-    return this.http.get<ApiItemData[]>(environment.apiUrl + '/items/' + id).pipe(
+
+  getCategories() {
+    return this.http.get<ApiCategoryData[]>(environment.apiUrl + '/categories').pipe(
       map(response => {
-        return response.map(itemData => {
-          return new Item(
-            itemData._id,
-            itemData.category,
-            itemData.title,
-            itemData.price,
-            itemData.description,
-            itemData.user,
-            itemData.image,
+        return response.map(categoryData => {
+          return new CategoryModel(
+            categoryData._id,
+            categoryData.title,
           );
         });
       })

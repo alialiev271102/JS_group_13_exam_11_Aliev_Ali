@@ -11,5 +11,13 @@ router.get('/', async (req, res, next) => {
         next(e);
     }
 });
+router.get('/:id', async (req, res, next) => {
+    try{
+        const categories = await Category.findById(req.params.id);
+        return  res.send(categories);
+    }catch (e) {
+        next(e);
+    }
+});
 
 module.exports = router;

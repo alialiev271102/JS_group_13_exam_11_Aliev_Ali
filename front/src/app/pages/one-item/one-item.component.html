@@ -9,7 +9,7 @@
       fxFlex="100%"
       *ngFor="let item of items | async"
     >
-      <mat-card>
+      <mat-card *ngIf="itemId === item.id">
         <mat-card-title>{{ item.title }}</mat-card-title>
         <img
           [src]="item.image | image"
@@ -18,14 +18,12 @@
         />
         <mat-card-content>
           <p>Price: <strong>{{ item.price }} $</strong></p>
+          <p>Description: {{ item.description }}</p>
+          <div *ngFor="let category of categories | async">
+            <p *ngIf="category.id === item.category">Category: {{ category.title }}</p>
+          </div>
         </mat-card-content>
         <mat-divider></mat-divider>
-        <mat-card-actions>
-          <a
-            [routerLink]="['/items/', item.id]"
-            mat-button
-          >Show More</a>
-        </mat-card-actions>
       </mat-card>
     </div>
   </div>
