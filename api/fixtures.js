@@ -38,7 +38,7 @@ const run = async () => {
         price: '1500',
         description: 'Very strong PC',
         user: ali,
-        image: "computer.jpg"
+        image: "computer.jpeg"
     },{
         category: cars,
         title: 'lexus',
