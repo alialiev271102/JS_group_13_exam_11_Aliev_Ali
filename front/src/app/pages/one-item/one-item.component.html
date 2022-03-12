@@ -1,0 +1,32 @@
+<mat-progress-spinner
+  *ngIf="(loading | async) else itemsArea"
+  mode="indeterminate"
+></mat-progress-spinner>
+
+<ng-template #itemsArea>
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      fxFlex="100%"
+      *ngFor="let item of items | async"
+    >
+      <mat-card>
+        <mat-card-title>{{ item.title }}</mat-card-title>
+        <img
+          [src]="item.image | image"
+          [alt]="'Photo of ' + item.title"
+          mat-card-image
+        />
+        <mat-card-content>
+          <p>Price: <strong>{{ item.price }} $</strong></p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <a
+            [routerLink]="['/items/', item.id]"
+            mat-button
+          >Show More</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</ng-template>
