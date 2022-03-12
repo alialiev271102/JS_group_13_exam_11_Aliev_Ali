@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const config = require('./config');
 const users = require('./app/users')
 const categories = require('./app/category');
+const items = require('./app/item');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/users', users);
 app.use('/categories', categories);
+app.use('/items', items);
 
 const run = async () => {
     await mongoose.connect(config.mongo.db, config.mongo.options);
